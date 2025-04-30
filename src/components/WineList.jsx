@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import WineCard from "./WineCard";
+import WineCard from "./WineCard"
 
 function debounce(fn, delay) {
     let timeoutId;

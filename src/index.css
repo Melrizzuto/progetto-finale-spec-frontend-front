@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@500;700&display=swap');
+
+:root {
+    --color-primary: #7d1538;
+    /* bordeaux */
+    --color-secondary: #f7f1e3;
+    /* panna */
+    --color-accent: #c59d5f;
+    /* oro caldo */
+    --color-text: #2e2e2e;
+    --color-light: #fffdf9;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Lato', sans-serif;
+    --radius: 12px;
+    --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    font-family: var(--font-sans);
+    margin: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--font-serif);
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+button {
+    margin: 5px;
+    font-family: var(--font-sans);
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #61122b;
+    transform: scale(1.03);
+}
+
+.card {
+    width: 400px;
+    height: 400px;
+    background-color: var(--color-light);
+    border-radius: var(--radius);
+    padding: 1.8rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+nav a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 1.2rem;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--color-accent);
+}
+
+.sidebar {
+    background-color: white;
+    border-left: 4px solid var(--color-accent);
+    padding: 2rem;
+    border-radius: var(--radius) 0 0 var(--radius);
+    box-shadow: var(--shadow);
+}
+
+footer {
+    background-color: var(--color-light);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+    color: #666;
+}
+
+footer p {
+    margin: 0.3rem 0;
+}
+
+input,
+select {
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
+    font-family: var(--font-sans);
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: var(--color-primary);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
