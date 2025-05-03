@@ -32,10 +32,15 @@ export default function WineList() {
 
             const response = await axios.get(url);
             setWines(response.data);
+            console.log("response.data:", response.data);
+
+
         } catch (error) {
             console.error("Errore caricamento vini:", error);
         }
     }, [search, category]);
+
+
 
     const debouncedSetSearch = useCallback(
         debounce((value) => {

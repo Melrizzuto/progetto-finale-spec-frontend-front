@@ -24,15 +24,21 @@ export default function DetailPage() {
     if (!wine) return <p>Caricamento in corso...</p>;
     console.log("Wine:", wine);
     return (
-        <div style={{ padding: "20px" }}>
-            <h2>{wine.title}</h2>
-            <p><strong>Categoria:</strong> {wine.category}</p>
-            <p><strong>Winery:</strong> {wine.winery}</p>
-            <p><strong>Regione:</strong> {wine.region}</p>
-            <p><strong>Anno:</strong> {wine.year}</p>
-            <p><strong>Uva:</strong> {wine.grape}</p>
-            <p><strong>Gradazione alcolica:</strong> {wine.alcoholContent}%</p>
-            <p><strong>Descrizione:</strong> {wine.description}</p>
+        <div className="detail-container">
+            <div className="detail-content">
+                <img src={wine.image} alt={wine.title} className="wine-img" />
+                <div className="wine-details">
+                    <h2>{wine.title}</h2>
+                    <p><strong>Categoria:</strong> {wine.category}</p>
+                    <p><strong>Winery:</strong> {wine.winery}</p>
+                    <p><strong>Regione:</strong> {wine.region}</p>
+                    <p><strong>Anno:</strong> {wine.year}</p>
+                    <p><strong>Uva:</strong> {wine.grape}</p>
+                    <p><strong>Gradazione alcolica:</strong> {wine.alcoholContent}%</p>
+                    <p><strong>Descrizione:</strong> {wine.description}</p>
+                </div>
+            </div>
         </div>
     );
+
 }
