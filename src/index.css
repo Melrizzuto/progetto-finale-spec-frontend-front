@@ -258,3 +258,55 @@ nav a:hover {
     margin-bottom: 0.8rem;
     font-size: 1.05rem;
 }
+
+/* ---------------------------------
+  SIDEBAR
+----------------------------------*/
+
+.sidebar-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    z-index: 1000;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-link {
+    display: block;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: black;
+}
+
+/* ---------------------------------
+  FAVS PAGE
+----------------------------------*/
+
+.favorites-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--color-light);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.favorites-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+}
