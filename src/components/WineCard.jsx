@@ -21,7 +21,7 @@ function WineCard({ wine }) {
             <p>Categoria: {wine.category}</p>
 
             <Link to={`/wines/${wine.id}`}>
-                <button>🔍 Dettagli</button>
+                <button style={{ width: "300px" }}>🔍 Dettagli</button>
             </Link>
 
             <button onClick={() => {

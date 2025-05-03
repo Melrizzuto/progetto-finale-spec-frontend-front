@@ -1,3 +1,6 @@
+/* ---------------------------------
+   FONT & ROOT VARIABLES
+----------------------------------*/
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@500;700&display=swap');
 
 :root {
@@ -9,12 +12,17 @@
     /* oro caldo */
     --color-text: #2e2e2e;
     --color-light: #fffdf9;
+
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Lato', sans-serif;
+
     --radius: 12px;
     --shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* ---------------------------------
+   BASE ELEMENTS
+----------------------------------*/
 body {
     font-family: var(--font-sans);
     margin: 0;
@@ -32,6 +40,17 @@ h4 {
     margin-bottom: 0.5rem;
 }
 
+p {
+    margin-bottom: 1rem;
+}
+
+strong {
+    color: var(--color-primary);
+}
+
+/* ---------------------------------
+   BUTTONS
+----------------------------------*/
 button {
     margin: 5px;
     font-family: var(--font-sans);
@@ -52,6 +71,76 @@ button:hover {
     transform: scale(1.03);
 }
 
+/* ---------------------------------
+   FORM ELEMENTS
+----------------------------------*/
+input,
+select {
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid #ccc;
+    font-family: var(--font-sans);
+    margin-bottom: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+    display: block;
+    color: var(--color-primary);
+}
+
+/* ---------------------------------
+   LAYOUT & CONTAINERS
+----------------------------------*/
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.sidebar {
+    background-color: white;
+    border-left: 4px solid var(--color-accent);
+    padding: 2rem;
+    border-radius: var(--radius) 0 0 var(--radius);
+    box-shadow: var(--shadow);
+}
+
+footer {
+    background-color: var(--color-light);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.9rem;
+    border-top: 1px solid #ddd;
+    color: #666;
+}
+
+footer p {
+    margin: 0.3rem 0;
+}
+
+/* ---------------------------------
+   NAVIGATION
+----------------------------------*/
+nav a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: bold;
+    margin-right: 1.2rem;
+    font-size: 1.1rem;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--color-accent);
+}
+
+/* ---------------------------------
+   CARD GENERIC STYLE
+----------------------------------*/
 .card {
     width: 400px;
     height: 400px;
@@ -60,8 +149,8 @@ button:hover {
     padding: 1.8rem;
     box-shadow: var(--shadow);
     margin-bottom: 2rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #eee;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
@@ -69,6 +158,9 @@ button:hover {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
+/* ---------------------------------
+   WINE CARD
+----------------------------------*/
 .wine-card {
     background-color: var(--color-light);
     border-radius: var(--radius);
@@ -87,13 +179,16 @@ button:hover {
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
+/* ---------------------------------
+   COMPARE PAGE
+----------------------------------*/
 .compare-container {
     display: flex;
     gap: 2rem;
     padding: 2rem;
     justify-content: center;
     flex-wrap: wrap;
-    /* così su mobile vanno sotto */
+    /* mobile-friendly */
 }
 
 .compare-card {
@@ -127,6 +222,9 @@ button:hover {
     flex: 1;
 }
 
+/* ---------------------------------
+   DETAIL PAGE
+----------------------------------*/
 .detail-container {
     max-width: 1000px;
     margin: 2rem auto;
@@ -159,62 +257,4 @@ button:hover {
 .wine-details p {
     margin-bottom: 0.8rem;
     font-size: 1.05rem;
-}
-
-nav a {
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: bold;
-    margin-right: 1.2rem;
-    font-size: 1.1rem;
-    transition: color 0.2s ease;
-}
-
-nav a:hover {
-    color: var(--color-accent);
-}
-
-.sidebar {
-    background-color: white;
-    border-left: 4px solid var(--color-accent);
-    padding: 2rem;
-    border-radius: var(--radius) 0 0 var(--radius);
-    box-shadow: var(--shadow);
-}
-
-footer {
-    background-color: var(--color-light);
-    padding: 2rem;
-    text-align: center;
-    font-size: 0.9rem;
-    border-top: 1px solid #ddd;
-    color: #666;
-}
-
-footer p {
-    margin: 0.3rem 0;
-}
-
-input,
-select {
-    padding: 0.5rem;
-    border-radius: var(--radius);
-    border: 1px solid #ccc;
-    font-family: var(--font-sans);
-    margin-bottom: 1rem;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 0.4rem;
-    display: block;
-    color: var(--color-primary);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
 }
