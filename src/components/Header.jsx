@@ -14,7 +14,9 @@ function Header() {
                 <div className="container">
                     <h1 className="logo">🍷 Wine Comparator</h1>
                     {/* al click apro la sidebar */}
-                    <button onClick={() => setIsOpen(true)}>☰ Menu</button>
+                    <button className="menu-button" onClick={() => setIsOpen(true)}>
+                        ☰ Menu
+                    </button>
                 </div>
             </header>
 
@@ -25,3 +27,4 @@ function Header() {
 }
 
 export default Header;
+
