@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
 import FavoritesPage from "./pages/FavoritesPage";
 import ComparePage from "./pages/ComparePage";
+import NotFound from "./pages/NotFound";
 // importo i context per gestire preferiti e confronto
 import { FavoritesProvider } from "./contexts/FavoritesContext";
 import { ComparatorProvider } from "./contexts/ComparatorContext";
@@ -31,6 +32,8 @@ function App() {
               <Route path="/compare" element={<ComparePage />} />
               {/* pagina dei preferiti */}
               <Route path="/favorites" element={<FavoritesPage />} />
+              {/* fallback delle rotte inesistenti */}
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </FavoritesProvider>

@@ -310,3 +310,55 @@ nav a:hover {
     gap: 2rem;
     justify-content: center;
 }
+
+/* ---------------------------------
+  NOT FOUND PAGE
+----------------------------------*/
+.not-found-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* Occupa tutta l'altezza della finestra */
+    background-color: var(--color-secondary);
+}
+
+.not-found-content {
+    text-align: center;
+    background-color: var(--color-light);
+    padding: 3rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    max-width: 500px;
+    width: 100%;
+}
+
+.not-found-content h1 {
+    font-size: 6rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-family: var(--font-serif);
+}
+
+.not-found-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--color-text);
+    font-family: var(--font-sans);
+}
+
+.not-found-link {
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: white;
+    background-color: var(--color-primary);
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.not-found-link:hover {
+    background-color: #61122b;
+    transform: scale(1.05);
+}
