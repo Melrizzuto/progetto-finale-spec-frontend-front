@@ -5,7 +5,7 @@ import DefaultLayout from "./layout/DefaultLayout";
 // importo le pagine principali
 import HomePage from "./pages/HomePage";
 import DetailPage from "./pages/DetailPage";
-import Favorites from "./pages/FavoritesPage";
+import FavoritesPage from "./pages/FavoritesPage";
 import ComparePage from "./pages/ComparePage";
 // importo i context per gestire preferiti e confronto
 import { FavoritesProvider } from "./contexts/FavoritesContext";
@@ -30,7 +30,7 @@ function App() {
               {/* pagina per confrontare due vini */}
               <Route path="/compare" element={<ComparePage />} />
               {/* pagina dei preferiti */}
-              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
             </Route>
           </Routes>
         </FavoritesProvider>

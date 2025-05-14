@@ -7,7 +7,8 @@ import { useFavorites } from "../contexts/FavoritesContext";
 // importo il context del comparatore
 import { useComparator } from "../contexts/ComparatorContext";
 
-function WineCard({ wine }) {
+//Avvolgo la funzione in memo per non ri renderizzare il componente se le props non cambiano
+const WineCard = memo(function WineCard({ wine }) {
     // prendo la lista dei preferiti e la funzione per aggiungere/rimuovere
     const { favorites, toggleFavorite } = useFavorites();
     // verifico se questo vino è tra i preferiti
@@ -32,8 +33,7 @@ function WineCard({ wine }) {
                 <button style={{ width: "300px" }}>🔍 Dettagli</button>
             </Link>
 
-            {/* bottone per aggiungere o rimuovere dai preferiti.
-                dopo aver cliccato, faccio una breve attesa e poi reindirizzo ai preferiti */}
+            {/* bottone per aggiungere o rimuovere dai preferiti */}
             <button onClick={() => {
                 toggleFavorite(wine);
                 setTimeout(() => navigate("/favorites"), 100);
@@ -47,7 +47,6 @@ function WineCard({ wine }) {
             </button>
         </div>
     );
-}
+});
 
-// uso memo per evitare che il componente si ri-renderizzi se le props non cambiano
-export default memo(WineCard);
+export default WineCard;

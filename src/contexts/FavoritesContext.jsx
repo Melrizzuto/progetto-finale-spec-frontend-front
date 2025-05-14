@@ -1,3 +1,14 @@
+
+//Context globale per gestire i vini salvati come preferiti.
+//Gestisco uno stato chiamato favorites che contiene la lista dei preferiti.
+//All'inizio, recupero i preferiti salvati nel localStorage.
+//Ogni volta che aggiungo o rimuovo un vino dai preferiti:
+//Controllo se è già presente.
+//- Se sì, lo rimuovo; altrimenti lo aggiungo. (togglefavorites)
+//Aggiorno anche il localStorage per salvare i cambiamenti.
+//I componenti figli possono accedere direttamente alla lista dei preferiti e al metodo di toggle tramite l'hook personalizzato useFavorites.
+
+
 // importo tutti gli hook necessari da react
 import { createContext, useContext, useState, useEffect, useCallback, useMemo } from "react";
 

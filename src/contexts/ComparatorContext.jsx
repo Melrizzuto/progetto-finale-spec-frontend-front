@@ -1,3 +1,13 @@
+
+//uso il Context globale per gestire la selezione di due vini da confrontare.
+//Gestisco uno stato chiamato items che contiene i vini selezionati.
+//Ogni volta che seleziono un vino:
+//- Se è già selezionato > lo rimuovo dalla lista.
+//- Se non è selezionato e ci sono meno di 2 vini > faccio una chiamata API per prendere i dettagli e lo aggiungo.
+//Quando i vini selezionati diventano 2 > navigo automaticamente alla pagina / compare.
+//Il flag hasNavigated evita di ripetere la navigazione fino a quando non viene deselezionato un vino.
+
+
 // importo gli hook di react e react-router-dom
 import { createContext, useContext, useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";

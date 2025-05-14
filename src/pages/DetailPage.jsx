@@ -30,8 +30,6 @@ export default function DetailPage() {
     // se il vino non è ancora stato caricato, mostro un messaggio
     if (!wine) return <p>caricamento in corso...</p>;
 
-    // debug: stampo il vino in console
-    console.log("wine:", wine);
 
     // quando il vino è pronto, lo mostro nella pagina di dettaglio
     return (

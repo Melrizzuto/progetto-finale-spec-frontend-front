@@ -18,7 +18,7 @@ export default function Favorites() {
         );
     }
 
-    // altrimenti mostro la lista dei preferiti con il layout migliorato
+    // altrimenti mostro la lista dei preferiti 
     return (
         <div className="favorites-container">
             <h2>i tuoi preferiti ❤️</h2>
