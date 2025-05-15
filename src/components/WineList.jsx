@@ -1,100 +1,97 @@
-// importo axios per fare chiamate API
+// Importo debounce da lodash per ottimizzare le chiamate di ricerca
+import debounce from "lodash/debounce";
+// Importo gli hook di React
+import { useEffect, useState, useMemo } from "react";
+// Importo axios per fare chiamate API
 import axios from "axios";
-// importo gli hook necessari
-import { useEffect, useState, useCallback, useMemo } from "react";
-// importo il componente che mostra ogni vino
+// Importo il componente WineCard per la visualizzazione di ogni vino
 import WineCard from "./WineCard";
 
-// creo una funzione debounce per ritardare l'esecuzione della ricerca
-function debounce(fn, delay) {
-    let timeoutId;
-    return (...args) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            fn(...args);
-        }, delay);
-    };
-}
-
 export default function WineList() {
-    // stato per i vini ottenuti dal backend
+    // **Stati Locali**
+    // Stato che memorizza i vini recuperati dal backend
     const [wines, setWines] = useState([]);
-    // stato per l'input di ricerca digitato
+    // Stato per gestire l'input di ricerca digitato dall'utente
     const [searchInput, setSearchInput] = useState("");
-    // stato che attiva la ricerca vera e propria (con debounce)
+    // Stato che contiene la stringa di ricerca effettiva con debounce
     const [search, setSearch] = useState("");
-    // stato per la categoria selezionata
+    // Stato per gestire il filtro della categoria selezionata
     const [category, setCategory] = useState("");
-    // stato per l'ordine di ordinamento (a-z o z-a)
+    // Stato per gestire l'ordine di ordinamento (a-z o z-a)
     const [sortOrder, setSortOrder] = useState("az");
 
-    // funzione per recuperare i vini dal backend con i parametri di ricerca
-    const fetchWines = useCallback(async () => {
-        try {
-            let url = "http://localhost:3001/wines";
-            const params = [];
+    // **Debounce con Lodash**
+    // Memorizzo la funzione di debounce che ritarda l'aggiornamento dello stato `search` di 300ms
+    // Questo evita di fare troppe chiamate API mentre l'utente sta digitando
+    const debouncedSetSearch = useMemo(() => debounce(setSearch, 300), []);
 
-            // aggiungo i parametri se presenti
-            if (search) params.push(`search=${search}`);
-            if (category) params.push(`category=${category}`);
-            if (params.length) {
-                url += "?" + params.join("&");
-            }
+    // **Gestione dell'input di ricerca**
+    // Quando l'utente digita nel campo di ricerca, aggiorno lo stato locale e avvio il debounce
+    const handleSearchChange = (e) => {
+        setSearchInput(e.target.value); // aggiorno l'input di ricerca visibile
+        debouncedSetSearch(e.target.value); // avvio il debounce
+    };
 
-            // chiamo l'API e salvo i risultati
-            const response = await axios.get(url);
-            setWines(response.data);
-            console.log("response.data:", response.data);
-        } catch (error) {
-            console.error("errore caricamento vini:", error);
-        }
-    }, [search, category]);
+    // **Gestione del filtro di categoria**
+    // Quando l'utente seleziona una categoria dal menu a tendina
+    const handleCategoryChange = (e) => {
+        setCategory(e.target.value); // aggiorno lo stato della categoria selezionata
+    };
 
-    // creo una funzione di ricerca con debounce per evitare troppe chiamate
-    const debouncedSetSearch = useCallback(
-        debounce((value) => {
-            setSearch(value);
-        }, 300),
-        []
-    );
+    // **Gestione dell'ordinamento**
+    // Quando l'utente cambia l'ordinamento (A-Z o Z-A)
+    const handleSortChange = (e) => {
+        setSortOrder(e.target.value); // aggiorno l'ordinamento selezionato
+    };
 
-    // aggiorno l'input e avvio il debounce
-    const handleSearchChange = useCallback((e) => {
-        setSearchInput(e.target.value);
-        debouncedSetSearch(e.target.value);
-    }, [debouncedSetSearch]);
-
-    // aggiorno la categoria selezionata
-    const handleCategoryChange = useCallback((e) => {
-        setCategory(e.target.value);
-    }, []);
-
-    // aggiorno l'ordinamento selezionato
-    const handleSortChange = useCallback((e) => {
-        setSortOrder(e.target.value);
-    }, []);
-
-    // ogni volta che cambiano search o category, chiamo l'api
+    // **Chiamata API per recuperare i vini dal backend**
+    // Ogni volta che cambia `search` o `category`, viene eseguita la richiesta API
     useEffect(() => {
-        fetchWines();
-    }, [fetchWines]);
+        // Funzione asincrona per fare la richiesta al backend
+        const fetchWines = async () => {
+            try {
+                // URL base dell'API
+                let url = "http://localhost:3001/wines";
+                const params = [];
 
-    // ordino i vini in base al titolo e all'ordine scelto
+                // Se esiste un termine di ricerca, lo aggiungo come parametro di query
+                if (search) params.push(`search=${search}`);
+                // Se esiste una categoria selezionata, la aggiungo come parametro di query
+                if (category) params.push(`category=${category}`);
+                // Se ci sono parametri, li concateno all'URL
+                if (params.length) {
+                    url += "?" + params.join("&");
+                }
+
+                // Faccio la richiesta HTTP con Axios
+                const response = await axios.get(url);
+                // Aggiorno lo stato dei vini con i dati ricevuti
+                setWines(response.data);
+            } catch (error) {
+                console.error("Errore nel caricamento dei vini:", error);
+            }
+        };
+
+        // Avvio della fetch
+        fetchWines();
+    }, [search, category]); // La fetch viene eseguita ogni volta che `search` o `category` cambiano
+
+    // **Ordinamento dei vini**
+    // Uso `useMemo` per memorizzare la lista ordinata e ricalcolarla solo se cambia `wines` o `sortOrder`
     const sortedWines = useMemo(() => {
         return [...wines].sort((a, b) => {
+            // Confronto i titoli in ordine alfabetico
             const titleA = a.title.toLowerCase();
             const titleB = b.title.toLowerCase();
-            if (sortOrder === "az") {
-                return titleA.localeCompare(titleB);
-            } else {
-                return titleB.localeCompare(titleA);
-            }
+            // Se l'ordine è "az" ordino dalla A alla Z, altrimenti dalla Z alla A
+            return sortOrder === "az" ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
         });
     }, [wines, sortOrder]);
 
+    //  **Render del componente**
     return (
         <div>
-            {/* barra di ricerca, filtro per categoria, ordinamento */}
+            {/* Barra di ricerca e selezione dei filtri */}
             <div style={{ marginBottom: "20px" }}>
                 <input
                     type="text"
@@ -114,7 +111,7 @@ export default function WineList() {
                 </select>
             </div>
 
-            {/* visualizzo le winecard con i dati ordinati */}
+            {/* Visualizzazione delle WineCard */}
             <div style={{ display: "flex", flexWrap: "wrap" }}>
                 {sortedWines.map((wine) => (
                     <WineCard key={wine.title} wine={wine} />

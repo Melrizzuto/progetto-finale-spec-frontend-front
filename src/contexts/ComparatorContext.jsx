@@ -29,11 +29,11 @@ export function ComparatorProvider({ children }) {
     // funzione per aggiungere o rimuovere un vino dal confronto
     const toggleCompare = useCallback(async (wine) => {
         // verifico se il vino è già stato selezionato
-        const alreadySelected = items.some((w) => w.id === wine.id);
+        const alreadySelected = items.some((w) => w.id === wine.id); // controllo se almeno un vino nell'array items ha lo stesso ID del vino passato.
 
         if (alreadySelected) {
             // se è già selezionato, lo rimuovo
-            setItems((prev) => prev.filter((w) => w.id !== wine.id));
+            setItems((prev) => prev.filter((w) => w.id !== wine.id)); //creo un nuovo array escludendo il vino con l'ID corrispondente.
             setHasNavigated(false); // resetto la navigazione
         } else if (items.length < 2) {
             try {
@@ -56,13 +56,13 @@ export function ComparatorProvider({ children }) {
                 console.error("errore nel caricamento dettagli vino", error);
             }
         }
-    }, [items, navigate]);
+    }, [items, navigate]); // items: La funzione controlla se il vino è già selezionato (items.some(...)) e lo aggiorna. Quindi, se items cambia, è fondamentale ricreare la funzione con il nuovo stato. navigate: È una funzione di navigazione di React Router. Anche se raramente cambia, per sicurezza React consiglia di metterla nelle dipendenze.
 
     // preparo il valore da passare al context
     const contextValue = useMemo(() => ({
         items,
         toggleCompare
-    }), [items, toggleCompare]);
+    }), [items, toggleCompare]); // uso useMemo perchè altrimenti l'oggetto contextValue verrebbe ricreato ad ogni render del componente, anche se items e toggleCompare non sono cambiati.
 
     // ritorno il provider con i figli dentro
     return (

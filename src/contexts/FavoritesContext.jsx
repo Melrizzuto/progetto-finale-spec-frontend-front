@@ -20,7 +20,7 @@ export function FavoritesProvider({ children }) {
     const [favorites, setFavorites] = useState(() => {
         const stored = localStorage.getItem("favorites");
         return stored ? JSON.parse(stored) : [];
-    });
+    }); //useState viene inizializzato con una funzione di callback. Questo significa che il codice dentro la funzione viene eseguito solo una volta al montaggio del componente, e non a ogni render.localStorage.getItem("favorites") → Controlla se ci sono dati salvati in localStorage con la chiave "favorites". JSON.parse(stored) → Se trova qualcosa, lo converte in un array di oggetti JavaScript(perché in localStorage è salvato come stringa). Se non trova nulla, ritorna un array vuoto [].
 
     // ogni volta che cambia lo stato dei preferiti, lo salvo in localStorage
     useEffect(() => {
