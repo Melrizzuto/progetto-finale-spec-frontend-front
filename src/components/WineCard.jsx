@@ -7,7 +7,7 @@ import { useFavorites } from "../contexts/FavoritesContext";
 // importo il context del comparatore
 import { useComparator } from "../contexts/ComparatorContext";
 
-//Avvolgo la funzione in memo per non ri renderizzare il componente se le props non cambiano
+//Avvolgo la funzione in REACT memo per non ri renderizzare il componente se le props non cambiano
 const WineCard = memo(function WineCard({ wine }) {
     // prendo la lista dei preferiti e la funzione per aggiungere/rimuovere
     const { favorites, toggleFavorite } = useFavorites();

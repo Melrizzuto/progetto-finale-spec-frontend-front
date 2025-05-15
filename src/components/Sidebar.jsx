@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function Sidebar({ isOpen, onClose }) {
     // prendo la posizione corrente per chiudere la sidebar quando cambio pagina
-    const location = useLocation();
+    const location = useLocation(); //Questo hook (useLocation) viene fornito da react-router-dom e restituisce l'oggetto location che contiene informazioni sull'URL corrente. Tra le informazioni disponibili c'è il pathname, che rappresenta l'indirizzo corrente(es. / home, /favorites, /compare).
 
     useEffect(() => {
         // chiudo la sidebar ogni volta che cambia il pathname
